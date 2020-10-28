@@ -1,26 +1,8 @@
 import java.util.ArrayList;
 public class Bataille {
-public static void bataille(Joueur j1,Joueur j2, int i){
-        j1.jouerUneCarte();
-        j1.jouerUneCarte();
-        j2.jouerUneCarte();
-        j2.jouerUneCarte();
-        i=+2;
-        j1.carteJouee.get(i).comparer(j2.carteJouee.get(i));
-        if(j1.carteJouee.get(i).getWin() == (1)){
-            j1.gagne(j2);
-        }else if (j1.carteJouee.get(i).getWin() == (-1)){
-            j2.gagne(j1);
-        }else{
-           System.out.println("bat²");   
-        }
-        //j1.vider();
-        //j2.vider();
-        //test2
-    }
+
     public static void main(String[]args){
         
-
         int couleursMax = Carte.couleurs.length;
         int valeursMax = Carte.valeurs.length;
         boolean duel = true;
@@ -43,7 +25,6 @@ public static void bataille(Joueur j1,Joueur j2, int i){
         }
 
         //!Partie
-
         while(duel){
             j1.jouerUneCarte();
             j2.jouerUneCarte();
@@ -52,12 +33,21 @@ public static void bataille(Joueur j1,Joueur j2, int i){
                 j1.carteJouee.get(i).comparer(j2.carteJouee.get(i));
                 if(j1.carteJouee.get(i).getWin() == (1)){
                     j1.gagne(j2);
-                    //System.out.println("Le Joueur 1 gagne le tour avec un "+j1.carteJouee.get(i).getCarte()+ "contre un "+ j2.carteJouee.get(i).getCarte());
+                    System.out.println("Le Joueur 1 gagne le tour avec un "+j1.carteJouee.get(i).getCarte()+ "contre un "+ j2.carteJouee.get(i).getCarte());
                 }else if (j1.carteJouee.get(i).getWin() == (-1)){
                     j2.gagne(j1);
-                    // System.out.println("Le Joueur 2 gagne le tour avec un "+j2.carteJouee.get(i).getCarte()+ "contre un "+ j1.carteJouee.get(i).getCarte());
+                    System.out.println("Le Joueur 2 gagne le tour avec un "+j2.carteJouee.get(i).getCarte()+ "contre un "+ j1.carteJouee.get(i).getCarte());
                 }else{ 
-                        bataille(j1,j2,i);
+                    if((j1.assezCarte())&&(j2.assezCarte())){
+                        batailled(j1,j2);
+                    }else{
+                        if(j1.jeuJoueur.size() < j2.jeuJoueur.size()){
+                            j1.gagne(j2);
+                        }else{
+                            j2.gagne(j1);
+                        }
+
+                    }
                 }
             }
 
@@ -72,11 +62,38 @@ public static void bataille(Joueur j1,Joueur j2, int i){
             
             duel = (j1.jeuJoueur.size() > 0) && (j2.jeuJoueur.size() > 0);
         }
+    
         //! ENDGAME (lol les avengers)
         if(j1.jeuJoueur.size() == 0){
             System.out.println("Le joueur 2 a gagné la partie");
         }else if(j2.jeuJoueur.size() == 0){
             System.out.println("Le joueur 1 a gagné la partie");
-        }
+        }   
     }
+
+    public static void batailled(Joueur j1,Joueur j2){
+        j1.jouerUneCarte();
+        j1.jouerUneCarte();
+        j2.jouerUneCarte();
+        j2.jouerUneCarte();
+        j1.carteJouee.get(j1.carteJouee.size() - 1 ).comparer(j2.carteJouee.get(j1.carteJouee.size()  - 1));
+        if(j1.carteJouee.get(j1.carteJouee.size()  - 1).getWin() == (1)){
+            j1.gagne(j2);
+        }else if (j1.carteJouee.get(j1.carteJouee.size()  - 1).getWin() == (-1)){
+            j2.gagne(j1);
+        }else{
+            if((j1.assezCarte())&&(j2.assezCarte())){
+            batailled(j1,j2);
+            }else{
+                if(j1.jeuJoueur.size() < j2.jeuJoueur.size()){
+                    j1.gagne(j2);
+                }else{
+                    j2.gagne(j1);
+                }
+            }
+        }
+        j2.vider();
+        j1.vider();
+    }
+   
 }

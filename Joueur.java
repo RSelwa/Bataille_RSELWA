@@ -8,13 +8,7 @@ public class Joueur {
     //*Accesseurs
     public int getPoints(){return jeuJoueur.size();}
     public String getName(){return "Joueur";}
-    public boolean assezCarte(){
-        if(jeuJoueur.size()> 1){
-            return true;
-        }else {
-            return false;
-        }
-    }
+
 
     //*Methods
     public void jouerUneCarte(){
@@ -25,6 +19,35 @@ public class Joueur {
             jeuJoueur.remove(z);
         }
     }
+
+    //assez de carte pour une bataille
+    public Boolean assezCarte(){
+            if(jeuJoueur.size() >= 2){
+                return true;
+            }else{
+                return false;
+            }
+    }
+    // public Boolean assezCarte(Boolean x, int n){
+    //     if(x == false){
+    //         if(n > 2){
+    //             return true;
+    //         }else if (n >= 1){
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
+    // public Boolean assezCarte(Boolean x){
+    //     if(x == false){
+    //         if(jeuJoueur.size() > 2){
+    //             return true;
+    //         }else if (jeuJoueur.size() > 1){
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
     public void gagne(Joueur j2){
         for(int i = 0; i < carteJouee.size(); i++){
             jeuJoueur.add(carteJouee.get(i));
