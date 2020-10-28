@@ -14,8 +14,8 @@ public static void bataille(Joueur j1,Joueur j2, int i){
         }else{
            System.out.println("bat²");   
         }
-        j1.vider();
-        j2.vider();
+        //j1.vider();
+        //j2.vider();
     }
     public static void main(String[]args){
         
