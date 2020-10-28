@@ -16,6 +16,7 @@ public static void bataille(Joueur j1,Joueur j2, int i){
         }
         //j1.vider();
         //j2.vider();
+        //test2
     }
     public static void main(String[]args){
         
