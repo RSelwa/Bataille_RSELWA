@@ -57,8 +57,8 @@ public class Bataille {
             j2.vider();
             
             
-            System.out.println("J1 SIZE : "+j1.jeuJoueur.size());
-            System.out.println("J2 SIZE : "+j2.jeuJoueur.size());
+            System.out.println("Score de J1 : "+j1.jeuJoueur.size());
+            System.out.println("Score de J2 : "+j2.jeuJoueur.size());
             
             duel = (j1.jeuJoueur.size() > 0) && (j2.jeuJoueur.size() > 0);
         }
